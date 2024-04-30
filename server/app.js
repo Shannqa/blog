@@ -1,13 +1,16 @@
 import createError from "http-errors";
 
 import express from "express";
+import session from "express-session";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import authRouter from "./routes/authRouter.js";
 import postsRouter from "./routes/postsRouter.js";
 import usersRouter from "./routes/usersRouter.js";
+import api from "./routes/api.js";
 import connectDB from "./config/db.js";
-
+import MongoStore from "connect-mongo";
 const app = express();
 
 app.use(logger("dev"));
@@ -18,6 +21,17 @@ app.use(express.static("public"));
 
 connectDB();
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
+  })
+);
+
+app.use("/auth", authRouter);
+app.use("/api", api);
 app.use("/api", postsRouter);
 app.use("/api", usersRouter);
 // catch 404 and forward to error handler
