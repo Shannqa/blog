@@ -4,8 +4,8 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
+import postsRouter from "./routes/postsRouter.js";
+import usersRouter from "./routes/usersRouter.js";
 import connectDB from "./config/db.js";
 
 const app = express();
@@ -18,9 +18,8 @@ app.use(express.static("public"));
 
 connectDB();
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-
+app.use("/api", postsRouter);
+app.use("/api", usersRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
