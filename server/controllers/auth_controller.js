@@ -5,15 +5,17 @@ import passport from "passport";
 import { issueJWT } from "../config/auth.js";
 
 const auth_check = async (req, res) => {
-  console.log(req.user);
-  if (typeof req.user === "undefined") {
-    res.send("You are already logged out!");
-  } else {
-    res.render("account", {
-      title: "Your account",
-      user: req.user || null,
-    });
-  }
+  console.log(res);
+  res.json({ message: "Hi!!!!!!" });
+  // console.log(req.user);
+  // if (typeof req.user === "undefined") {
+  //   res.send("You are already logged out!");
+  // } else {
+  //   res.render("account", {
+  //     title: "Your account",
+  //     user: req.user || null,
+  //   });
+  // }
 };
 
 const prot = async (req, res) => {

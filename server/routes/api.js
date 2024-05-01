@@ -9,6 +9,21 @@ router.get("/", function (req, res) {
   });
 });
 
+router.get("/log", function (req, res) {
+  res.json({
+    message: "get!",
+  });
+});
+
+router.post("/log", function (req, res) {
+  console.log(req.body.username);
+  console.log(req.body.password);
+  console.log(req.body);
+  res.send("good");
+});
+
+///////////
+
 router.post("/", verifyToken, function (req, res) {
   jwt.verify(req.token, process.env.TOKEN_KEY, (err, authData) => {
     if (err) {

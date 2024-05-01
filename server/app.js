@@ -11,8 +11,9 @@ import usersRouter from "./routes/usersRouter.js";
 import api from "./routes/api.js";
 import connectDB from "./config/db.js";
 import MongoStore from "connect-mongo";
+import cors from "cors";
 const app = express();
-
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -51,7 +52,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.json({ message: "error" });
 });
 
 export default app;
