@@ -9,9 +9,18 @@ function Login() {
   const [logged, setLogged] = useState(null);
 
 useEffect(() => {
-  fetch("/api")
+  const tok = localStorage.getItem("accessToken")
+  fetch("/api/auth/check", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      authorization: tok
+    },
+    body: JSON.stringify({
+    })
+  })
   .then(res => res.json())
-  .then(json => setData(json.message))
+  .then(json => setData(json.success))
 }, []);
 
 function handleSubmit(e) {
@@ -32,11 +41,16 @@ function handleSubmit(e) {
   .then(body => {
     if (body.success) {
       setUser(body.user.username)
+      localStorage.setItem("accessToken", body.jwt.token)
       setLogged(true)
     } else {
       setLogged(false);
     }
   })
+}
+
+function handleLogout() {
+  localStorage.removeItem("accessToken")
 }
 
   return(

@@ -15,6 +15,33 @@ function Root() {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   
+
+  useEffect(() => {
+    const hasToken = localStorage.getItem("accessToken")
+    if (hasToken) {
+      console.log("log")
+      fetch("/api/auth/check", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          authorization: hasToken
+        }
+      })
+      .then(res => res.json())
+      .then(body => {
+        if (body.success) {
+          setUser(body.user)
+          setLogged(true)
+        } else {
+          setLogged(false);
+        }
+      })
+      .catch(err => console.log("token err"))
+    } else {
+      console.log("not log");
+    }
+  })
+
     if (error) {
     return(<p>A network error has occured!</p>)
   }

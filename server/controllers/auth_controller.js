@@ -4,6 +4,17 @@ import User from "../models/userSchema.js";
 import passport from "passport";
 import { issueJWT } from "../config/auth.js";
 
+const check = async (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      user: req.user.username,
+    });
+  } else {
+    res.status(401).json({ success: false, message: "failure" });
+  }
+};
+
 const auth_check = async (req, res) => {
   console.log(res);
   res.json({ message: "Hi!!!!!!" });
@@ -93,9 +104,13 @@ const login_post = async (req, res, next) => {
     if (err) {
       res.status(401).json({ success: false, message: "failure" });
     } else {
-      res
-        .status(200)
-        .json({ success: true, message: "successful", user: req.user });
+      const jwt = issueJWT(user);
+      res.status(200).json({
+        success: true,
+        message: "successful",
+        user: req.user,
+        jwt: jwt,
+      });
     }
   })(req, res, next);
 };
@@ -110,12 +125,31 @@ const logout_get = (req, res, next) => {
   });
 };
 
+function verifyToken(req, res, next) {
+  // get auth header value
+  const bearerHeader = req.headers["authorization"];
+  // check if bearer is undefined
+  if (typeof bearerHeader !== "undefined") {
+    //split at the space
+    const bearer = bearerHeader.split(" ");
+    // get token from array
+    const bearerToken = bearer[1];
+    //set the token
+    req.token = bearerToken;
+    next();
+  } else {
+    //forbidden
+    // res.sendStatus(403);
+    res.end();
+  }
+}
+
 export {
   login_get,
   login_post,
   signup_get,
   signup_post,
   logout_get,
-  auth_check,
+  check,
   prot,
 };

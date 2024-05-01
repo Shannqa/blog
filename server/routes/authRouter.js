@@ -2,7 +2,7 @@ import express from "express";
 import {
   login_get,
   login_post,
-  auth_check,
+  check,
   signup_get,
   signup_post,
   logout_get,
@@ -32,11 +32,30 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-router.get("/check", auth_check);
+router.post("/check", verifyToken, authJWT, check);
 router.get("/login", login_get);
 router.post("/login", login_post);
 router.get("/signup", signup_get);
 router.post("/signup", signup_post);
 router.get("/logout", logout_get);
 router.get("/prot", authJWT, prot);
+
+function verifyToken(req, res, next) {
+  // get auth header value
+  const bearerHeader = req.headers["authorization"];
+  // check if bearer is undefined
+  if (typeof bearerHeader !== "undefined") {
+    //split at the space
+    const bearer = bearerHeader.split(" ");
+    // get token from array
+    const bearerToken = bearer[1];
+    //set the token
+    req.token = bearerToken;
+    next();
+  } else {
+    //forbidden
+    res.sendStatus(403);
+  }
+}
+
 export default router;
