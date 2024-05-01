@@ -89,9 +89,14 @@ const login_get = async (req, res, next) => {
 /* Log in form - post */
 
 const login_post = async (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/auth/check",
-    failureRedirect: "/auth/check",
+  passport.authenticate("local", (err, user) => {
+    if (err) {
+      res.status(401).json({ success: false, message: "failure" });
+    } else {
+      res
+        .status(200)
+        .json({ success: true, message: "successful", user: req.user });
+    }
   })(req, res, next);
 };
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { Context } from "./Root.jsx"
+import { BlogContext } from "./Root.jsx"
 
 function Header() {
   return(

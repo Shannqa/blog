@@ -4,12 +4,14 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 // import "../styles/main.css";
 
-export const Context = createContext({
-//
+export const BlogContext = createContext({
+  user: "",
+  setUser: () => {}
 });
 
 
 function Root() {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   
@@ -22,14 +24,16 @@ function Root() {
   
 
   return(
-    <Context.Provider value={{
+    <BlogContext.Provider value={{
+      user,
+      setUser
     }}>
       <div className="root">
         <Header />
         <Outlet />
         <Footer />
       </div>
-    </Context.Provider>
+    </BlogContext.Provider>
   )
 }
 
