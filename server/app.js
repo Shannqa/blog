@@ -1,5 +1,5 @@
 import createError from "http-errors";
-
+import { configDotenv } from "dotenv";
 import express from "express";
 import session from "express-session";
 import path from "path";
@@ -29,6 +29,10 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
   })
 );
+
+// view engine setup
+app.set("views", "views");
+app.set("view engine", "ejs");
 
 app.use("/auth", authRouter);
 app.use("/api", api);
