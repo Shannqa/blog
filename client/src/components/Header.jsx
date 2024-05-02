@@ -4,19 +4,25 @@ import Account from "./Account.jsx";
 import { BlogContext } from "./Root.jsx";
 import Logout from "./Logout.jsx";
 import AddPost from "./AddPost.jsx";
+import styles from "../styles/Header.module.css";
 
 function Header() {
   const { user, setUser } = useContext(BlogContext);
 
   return (
-    <div>
+    <div className={styles.header}>
       <h1>
         <Link to="/">Blog</Link>
       </h1>
       {user ? (
-        <div>
-          <Link to="account">Your account</Link> <Logout />
-          <Link to="posts/add">Add post</Link>
+        <div className={styles.links}>
+          <Link to="account" className={styles.button}>
+            Your account
+          </Link>
+          <Logout />
+          <Link to="posts/add" className={styles.button}>
+            Add post
+          </Link>
         </div>
       ) : (
         <Link to="login">Log in</Link>

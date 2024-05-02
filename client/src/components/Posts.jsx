@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import styles from "../styles/Home.module.css";
 function Posts() {
   const [allPosts, setAllPosts] = useState(null);
 
@@ -19,7 +19,7 @@ function Posts() {
       <div>
         {allPosts.map((post) => {
           return (
-            <div key={post._id}>
+            <div key={post._id} className={styles.post}>
               <h3>
                 <Link to={"/posts/" + post._id}>{post.title}</Link>
               </h3>

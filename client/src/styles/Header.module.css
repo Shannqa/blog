@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+button,
+.button {
+  display: inline;
+}
+
+.links > * {
+  margin-right: 10px;
+  padding: 4px 12px;
+
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid rgb(195, 195, 195);
+  height: 1.5rem;
+  cursor: pointer;
+}
