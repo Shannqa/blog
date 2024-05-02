@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BlogContext } from "./Root.jsx";
+import styles from "../styles/AddPost.module.css";
 
 function AddPost() {
   const { user, setUser, token, setToken } = useContext(BlogContext);
@@ -8,19 +9,6 @@ function AddPost() {
   const [content, setContent] = useState(null);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   fetch("/api/posts/" + id)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setPost(json);
-  //       console.log(json);
-  //     })
-  //     .catch((err) => console.log("Error fetching posts", err));
-  // }, []);
-
-  // if (post) {
-  console.log(token);
-  console.log(user);
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/api/posts", {
@@ -48,7 +36,7 @@ function AddPost() {
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className={styles.addPost} onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="title">Title:</label>
         <input
           id="title"
@@ -56,12 +44,14 @@ function AddPost() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <label htmlFor="content">Content:</label>
-        <input
+        <textarea
           id="content"
           name="content"
           onChange={(e) => setContent(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <button className={styles.button} type="submit">
+          Send
+        </button>
       </form>
     </div>
   );
