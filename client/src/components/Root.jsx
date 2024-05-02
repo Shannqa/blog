@@ -6,68 +6,62 @@ import Footer from "./Footer.jsx";
 
 export const BlogContext = createContext({
   user: "",
-  setUser: () => {}
+  setUser: () => {},
 });
-
 
 function Root() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
-  
 
+  // verify token on refresh
   useEffect(() => {
-    const hasToken = localStorage.getItem("accessToken")
+    const hasToken = localStorage.getItem("accessToken");
     if (hasToken) {
-      console.log("log")
+      console.log("log");
       fetch("/api/auth/check", {
         method: "POST",
         headers: {
           Accept: "application/json",
-          authorization: hasToken
-        }
+          authorization: hasToken,
+        },
       })
-      .then(res => res.json())
-      .then(body => {
-        if (body.success) {
-          setUser(body.user)
-          setLogged(true)
-        } else {
-          setLogged(false);
-        }
-      })
-      .catch(err => console.log("token err"))
+        .then((res) => res.json())
+        .then((body) => {
+          if (body.success) {
+            setUser(body.user);
+            setLogged(true);
+          } else {
+            setLogged(false);
+          }
+        })
+        .catch((err) => console.log("token err"));
     } else {
       console.log("not log");
     }
-  })
+  });
 
-    if (error) {
-    return(<p>A network error has occured!</p>)
+  if (error) {
+    return <p>A network error has occured!</p>;
   }
   if (loading) {
-    return(<p>Loading....</p>)
+    return <p>Loading....</p>;
   }
-  
 
-  return(
-    <BlogContext.Provider value={{
-      user,
-      setUser
-    }}>
+  return (
+    <BlogContext.Provider
+      value={{
+        user,
+        setUser,
+      }}
+    >
       <div className="root">
         <Header />
         <Outlet />
         <Footer />
       </div>
     </BlogContext.Provider>
-  )
+  );
 }
 
-export default Root
-
-
-
-
-
-
+export default Root;

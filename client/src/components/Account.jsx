@@ -1,15 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { BlogContext } from "./Root.jsx";
-import Login from "./Login";
+import Logout from "./Logout.jsx";
 
-function Home() {
+function Account() {
   const { user, setUser } = useContext(BlogContext);
 
+  // add a post
+
   return (
-    <div className="home">
-      <p>Home</p>
+    <div>
+      <p>Hello, {user}</p>
+
+      <Logout />
     </div>
   );
 }
-
-export default Home;
+export default Account;

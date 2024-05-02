@@ -1,14 +1,27 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
-import { BlogContext } from "./Root.jsx"
+import Account from "./Account.jsx";
+import { BlogContext } from "./Root.jsx";
+import Logout from "./Logout.jsx";
 
 function Header() {
-  return(
-    <p>Header</p>
-  )
-}
+  const { user, setUser } = useContext(BlogContext);
 
+  return (
+    <div>
+      <h1>
+        <Link to="/">Blog</Link>
+      </h1>
+      {user ? (
+        <div>
+          <Link to="account">Your account</Link> <Logout />
+        </div>
+      ) : (
+        <Link to="login">Log in</Link>
+      )}
+    </div>
+  );
+}
 
 // import { useMediaQuery } from "react-responsive";
 // import styles from "../styles/Header.module.css";
@@ -43,7 +56,7 @@ function Header() {
 //     const menu = document.querySelector(`.${styles.mobileMenuList}`);
 //     const links = document.querySelectorAll(`.${styles.mobileMenuList} a`);
 //     const menuBtn = document.querySelector("#openClose");
-  
+
 //     if (links) {
 //       links.forEach((a) => a.addEventListener("click", () => {
 //         menuBtn.src = "../assets/menu_FILL0_wght400_GRAD0_opsz24.svg";
@@ -86,7 +99,7 @@ function Header() {
 
 // function BrowserMenu() {
 //   const { userCart, categories } = useContext(ShopContext);
-  
+
 //     return(
 //     <div className={styles.browserMenu}>
 //       <Link to={"/"} className={styles.logo}>
@@ -114,4 +127,4 @@ function Header() {
 //   )
 // }
 
-export default Header
+export default Header;
