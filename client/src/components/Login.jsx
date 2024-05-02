@@ -3,7 +3,7 @@ import { BlogContext } from "./Root.jsx";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const { user, setUser } = useContext(BlogContext);
+  const { user, setUser, token, setToken } = useContext(BlogContext);
   const [data, setData] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +31,7 @@ function Login() {
         if (body.success) {
           setUser(body.user.username);
           localStorage.setItem("accessToken", body.jwt.token);
+          setToken(body.jwt.token);
           setLogged(true);
           navigate("/account");
         } else {

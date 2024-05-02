@@ -7,39 +7,39 @@ import Footer from "./Footer.jsx";
 export const BlogContext = createContext({
   user: "",
   setUser: () => {},
+  token: "",
+  setToken: () => {},
 });
 
 function Root() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
+  const [token, setToken] = useState(null);
 
   // verify token on refresh
   useEffect(() => {
-    const hasToken = localStorage.getItem("accessToken");
-    if (hasToken) {
-      console.log("log");
+    const storageToken = localStorage.getItem("accessToken");
+    if (storageToken) {
       fetch("/api/auth/check", {
         method: "POST",
         headers: {
           Accept: "application/json",
-          authorization: hasToken,
+          authorization: storageToken,
         },
       })
         .then((res) => res.json())
         .then((body) => {
           if (body.success) {
             setUser(body.user);
-            setLogged(true);
-          } else {
-            setLogged(false);
+            setToken(storageToken);
           }
         })
-        .catch((err) => console.log("token err"));
+        .catch((err) => console.log(err));
     } else {
       console.log("not log");
     }
-  });
+  }, []);
 
   if (error) {
     return <p>A network error has occured!</p>;
@@ -53,6 +53,8 @@ function Root() {
       value={{
         user,
         setUser,
+        token,
+        setToken,
       }}
     >
       <div className="root">

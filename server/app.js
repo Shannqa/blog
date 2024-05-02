@@ -46,7 +46,7 @@ app.set("view engine", "ejs");
 
 app.use("/api", apiRouter);
 app.use("/api/auth", authRouter);
-app.use("/api", postsRouter);
+app.use("/api/posts", postsRouter);
 app.use("/api", usersRouter);
 
 // catch 404 and forward to error handler

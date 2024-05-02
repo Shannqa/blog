@@ -5,6 +5,8 @@ import ErrorPage from "./ErrorPage.jsx";
 import Login from "./Login.jsx";
 import Home from "./Home.jsx";
 import Account from "./Account.jsx";
+import Post from "./Post.jsx";
+import AddPost from "./AddPost.jsx";
 
 function Router() {
   const router = createBrowserRouter([
@@ -24,6 +26,14 @@ function Router() {
         {
           path: "/account",
           element: <Account />,
+        },
+        {
+          path: "/posts/add",
+          element: <AddPost />,
+        },
+        {
+          path: "/posts/:id",
+          element: <Post />,
         },
       ],
     },

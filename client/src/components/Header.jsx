@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Account from "./Account.jsx";
 import { BlogContext } from "./Root.jsx";
 import Logout from "./Logout.jsx";
+import AddPost from "./AddPost.jsx";
 
 function Header() {
   const { user, setUser } = useContext(BlogContext);
@@ -15,6 +16,7 @@ function Header() {
       {user ? (
         <div>
           <Link to="account">Your account</Link> <Logout />
+          <Link to="posts/add">Add post</Link>
         </div>
       ) : (
         <Link to="login">Log in</Link>
