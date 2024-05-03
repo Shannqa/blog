@@ -1,0 +1,13 @@
+.editpost {
+  margin: 20px;
+  line-height: 1.5rem;
+  padding: 4px 12px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.buttons {
+  margin: 8px 0;
+  align-self: center;
+}

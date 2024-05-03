@@ -21,3 +21,35 @@ a:hover {
 a:active {
   color: rgb(1, 131, 109);
 }
+
+button,
+.button {
+  padding: 4px 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid rgb(195, 195, 195);
+  height: 1.5rem;
+  cursor: pointer;
+  background-color: white;
+  align-self: center;
+}
+
+.buttons-container {
+  margin: 8px 0;
+}
+.buttons-container > .button {
+  margin-right: 8px;
+}
+button:hover,
+.button:hover {
+  color: rgb(8, 88, 8);
+}
+
+button:active,
+.button:active {
+  color: rgb(1, 131, 109);
+}
+
+h1 {
+  font-size: 1.8rem;
+}

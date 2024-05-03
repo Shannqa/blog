@@ -1,0 +1,15 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  margin: 0 auto;
+  border: 1px solid rgb(195, 195, 195);
+  padding: 40px 15px;
+  width: 320px;
+}
+
+/* label,
+input {
+  width: 300px;
+  margin: 4px;
+} */

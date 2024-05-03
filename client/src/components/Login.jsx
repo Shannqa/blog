@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { BlogContext } from "./Root.jsx";
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/Login.module.css";
 
 function Login() {
   const { user, setUser, token, setToken } = useContext(BlogContext);
@@ -43,7 +44,7 @@ function Login() {
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className={styles.login}>
       <label htmlFor="username">Username</label>
       <input
         id="username"
@@ -57,8 +58,6 @@ function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit">Submit</button>
-      <p>{data}</p>
-      <p>{logged ? "yay" : "nay"}</p>
     </form>
   );
 }

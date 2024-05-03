@@ -1,33 +1,29 @@
-.addPost {
+form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px;
+  padding: 0 20px;
+  width: 600px;
 }
 
 input {
   width: 600px;
   border: 1px solid rgb(195, 195, 195);
-  height: 1.5rem;
+  height: 1.6rem;
+  padding: 4px;
 }
 
 textarea {
   width: 600px;
   height: 500px;
   border: 1px solid rgb(195, 195, 195);
+  padding: 2px;
 }
 
-.button {
+.buttons > * {
   margin-right: 10px;
-  padding: 4px 12px;
-  font-size: 1rem;
-  text-decoration: none;
-  border: 1px solid rgb(195, 195, 195);
-  height: 1.5rem;
-  cursor: pointer;
-  background-color: white;
 }
 
-.addPost > * {
+form > * {
   margin: 4px 0;
 }

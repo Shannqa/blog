@@ -1,4 +1,5 @@
 import Post from "../models/postSchema.js";
+import { body, validationResult } from "express-validator";
 
 const posts_get = async (req, res) => {
   try {
@@ -40,4 +41,47 @@ const post_get = async (req, res) => {
   }
 };
 
-export { posts_get, posts_post, post_get };
+const post_edit = [
+  // Validate and sanitize fields.
+  body("title", "Title must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("content", "Content must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+  // Process request after validation and sanitization.
+  async (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a Product object with escaped and trimmed data.
+    const post = {
+      title: req.body.title,
+      content: req.body.content,
+    };
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/error messages.
+
+      res.status(400).json({
+        message: "failure",
+        title: post.title ? post.title : "",
+        content: post.content ? post.content : "",
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      // Data from form is valid. Update product.
+      const updatedPost = await Post.findByIdAndUpdate(req.params.id, post, {});
+      res.status(200).json({
+        success: true,
+        message: "successful",
+      });
+    }
+  },
+];
+
+export { posts_get, posts_post, post_get, post_edit };

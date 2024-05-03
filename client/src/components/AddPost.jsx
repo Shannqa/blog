@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BlogContext } from "./Root.jsx";
-import styles from "../styles/AddPost.module.css";
+import styles from "../styles/PostEditor.module.css";
 
 function AddPost() {
   const { user, setUser, token, setToken } = useContext(BlogContext);
@@ -20,7 +20,6 @@ function AddPost() {
       body: JSON.stringify({
         title: title,
         content: content,
-        token: token,
       }),
     })
       .then((res) => res.json())
