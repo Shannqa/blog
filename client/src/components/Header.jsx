@@ -12,21 +12,27 @@ function Header() {
   return (
     <div className={styles.header}>
       <h1>
-        <Link to="/">Blog</Link>
+        <Link to="/">
+          <img src="../public/img/logo.png" />
+        </Link>
       </h1>
-      {user ? (
-        <div className={styles.links}>
-          <Link to="account" className={styles.button}>
-            Your account
+      <div className="buttons-container">
+        {user ? (
+          <>
+            <Link to="account" className="button">
+              Your account
+            </Link>
+            <Logout />
+            <Link to="posts/add" className="button">
+              Add post
+            </Link>
+          </>
+        ) : (
+          <Link className={styles.button} to="login">
+            Log in
           </Link>
-          <Logout />
-          <Link to="posts/add" className={styles.button}>
-            Add post
-          </Link>
-        </div>
-      ) : (
-        <Link to="login">Log in</Link>
-      )}
+        )}
+      </div>
     </div>
   );
 }

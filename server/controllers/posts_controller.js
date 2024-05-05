@@ -24,10 +24,11 @@ const posts_post = async (req, res) => {
     await post.save();
     res.status(200).json({
       success: true,
-      message: "successful",
+      msg: "success",
+      id: post._id,
     });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json({ error: err, message: "failure" });
   }
 };
 
@@ -84,4 +85,14 @@ const post_edit = [
   },
 ];
 
-export { posts_get, posts_post, post_get, post_edit };
+const post_delete = async (req, res) => {
+  try {
+    const deletePost = await Post.findByIdAndDelete(req.params.id).exec();
+    // console.log(deletePost);
+    res.status(200).json({ msg: "success" });
+  } catch (err) {
+    res.status(400).json({ msg: "failure", error: err });
+  }
+};
+
+export { posts_get, posts_post, post_get, post_edit, post_delete };

@@ -1,7 +1,11 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 0;
+  background-color: #fff;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 0;
 }
 
 button,

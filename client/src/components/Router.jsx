@@ -8,7 +8,6 @@ import Account from "./Account.jsx";
 import Post from "./Post.jsx";
 import AddPost from "./AddPost.jsx";
 import EditPostPage from "./EditPostPage.jsx";
-import DeletePostPage from "./DeletePostPage.jsx";
 
 function Router() {
   const router = createBrowserRouter([
@@ -40,10 +39,6 @@ function Router() {
         {
           path: "/posts/:id/edit",
           element: <EditPostPage />,
-        },
-        {
-          path: "/posts/:id/delete",
-          element: <DeletePostPage />,
         },
       ],
     },

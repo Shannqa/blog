@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, redirect, useParams, useNavigate } from "react-router-dom";
 import { BlogContext } from "./Root.jsx";
 import styles from "../styles/PostEditor.module.css";
 
@@ -8,6 +8,7 @@ function AddPost() {
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,12 +25,17 @@ function AddPost() {
     })
       .then((res) => res.json())
       .then((json) => {
-        if (json.success) {
+        if (json.msg === "success") {
           setTitle("");
           setContent("");
+          const postId = json.id;
+          navigate(`/posts/${postId}`);
         } else {
           setError("Something went wrong! Post not saved.");
         }
+      })
+      .catch((err) => {
+        setError("Something went wrong! Post not saved.");
       });
   }
 

@@ -8,7 +8,7 @@ function Home() {
   const { user, setUser } = useContext(BlogContext);
 
   return (
-    <div className={styles.home}>
+    <div className="main">
       <Posts />
     </div>
   );

@@ -4,12 +4,14 @@
   width: max-content;
   margin: 0 auto;
   border: 1px solid rgb(195, 195, 195);
-  padding: 40px 15px;
+  padding: 20px 15px;
   width: 320px;
 }
 
-/* label,
-input {
-  width: 300px;
-  margin: 4px;
-} */
+.login input {
+  width: 100%;
+}
+
+.login button {
+  margin-top: 20px;
+}

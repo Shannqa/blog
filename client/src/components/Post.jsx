@@ -34,9 +34,7 @@ function Posts() {
             <Link to="./edit" className="button">
               Edit post
             </Link>
-            <Link to="./delete" className="button">
-              Delete post
-            </Link>
+            <DeletePost />
           </div>
         </div>
       </div>

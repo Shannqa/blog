@@ -45,6 +45,7 @@ function Login() {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className={styles.login}>
+      <h2>Log in</h2>
       <label htmlFor="username">Username</label>
       <input
         id="username"

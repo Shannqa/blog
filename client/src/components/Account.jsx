@@ -8,7 +8,7 @@ function Account() {
   // add a post
 
   return (
-    <div>
+    <div className="main">
       <p>Hello, {user}</p>
 
       <Logout />
