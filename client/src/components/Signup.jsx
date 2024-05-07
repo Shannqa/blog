@@ -7,7 +7,6 @@ function Login() {
   const { user, setUser, token, setToken } = useContext(BlogContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [logged, setLogged] = useState(null);
   const [usernameError, setUsernameError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const navigate = useNavigate();
@@ -35,7 +34,8 @@ function Login() {
       return true;
     }
   }
-  // log in
+
+  // sign up
   function handleSubmit(e) {
     e.preventDefault();
     const nameCheck = checkUsername();
@@ -44,7 +44,7 @@ function Login() {
     if (!nameCheck || !passCheck) {
       return;
     }
-    fetch("/api/auth/login", {
+    fetch("/api/auth/signup", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -61,19 +61,23 @@ function Login() {
           setUser(body.user.username);
           localStorage.setItem("accessToken", body.jwt.token);
           setToken(body.jwt.token);
-          setLogged(true);
           setUsername("");
+          setPassword("");
           navigate("/account");
         } else {
           // there are errors
-          if (body.message === "Incorrect username") {
-            setUsernameError("Wrong username.");
-          } else if (body.message === "Incorrect password") {
-            setPasswordError("Wrong password.");
+          setUsername(body.username);
+          setPassword(body.password);
+          if (body.errors) {
+            body.errors.forEach((err) => {
+              if (err.path === "username") {
+                setUsernameError(err.msg);
+              } else if (err.path === "password") {
+                setPasswordError(err.msg);
+              }
+            });
           }
-          setLogged(false);
         }
-        setPassword("");
       });
   }
 

@@ -3,6 +3,7 @@ import Root from "./Root.jsx";
 import ErrorPage from "./ErrorPage.jsx";
 // import Placeholder from "./Placeholder.jsx";
 import Login from "./Login.jsx";
+import Signup from "./Signup.jsx";
 import Home from "./Home.jsx";
 import Account from "./Account.jsx";
 import Post from "./Post.jsx";
@@ -19,6 +20,10 @@ function Router() {
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
         },
         {
           path: "/login",

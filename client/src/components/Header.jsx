@@ -28,9 +28,14 @@ function Header() {
             </Link>
           </>
         ) : (
-          <Link className={styles.button} to="login">
-            Log in
-          </Link>
+          <>
+            <Link className="button" to="signup">
+              Sign up
+            </Link>
+            <Link className="button" to="login">
+              Log in
+            </Link>
+          </>
         )}
       </div>
     </div>
