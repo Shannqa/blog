@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { BlogContext } from "./Root.jsx";
+import { AppContext } from "./Root.jsx";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.css";
 
 function Login() {
-  const { user, setUser, token, setToken } = useContext(BlogContext);
+  const { user, setUser, token, setToken } = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [logged, setLogged] = useState(null);

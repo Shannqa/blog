@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { BlogContext } from "./Root.jsx";
+import { AppContext } from "./Root.jsx";
 import Logout from "./Logout.jsx";
 
 function Account() {
-  const { user, setUser } = useContext(BlogContext);
+  const { user, setUser } = useContext(AppContext);
 
   // add a post
 

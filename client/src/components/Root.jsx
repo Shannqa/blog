@@ -5,7 +5,7 @@ import Footer from "./Footer.jsx";
 import "../styles/main.css";
 import ErrorModal from "./ErrorModal.jsx";
 
-export const BlogContext = createContext({
+export const AppContext = createContext({
   user: "",
   setUser: () => {},
   token: "",
@@ -45,7 +45,7 @@ function Root() {
   }, [token]);
 
   return (
-    <BlogContext.Provider
+    <AppContext.Provider
       value={{
         user,
         setUser,
@@ -61,7 +61,7 @@ function Root() {
         <Outlet />
         <Footer />
       </div>
-    </BlogContext.Provider>
+    </AppContext.Provider>
   );
 }
 

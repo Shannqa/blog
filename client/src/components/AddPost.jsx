@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, redirect, useParams, useNavigate } from "react-router-dom";
-import { BlogContext } from "./Root.jsx";
+import { AppContext } from "./Root.jsx";
 import styles from "../styles/PostEditor.module.css";
 
 function AddPost() {
-  const { user, setUser, token, setToken } = useContext(BlogContext);
+  const { user, setUser, token, setToken } = useContext(AppContext);
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
   const [error, setError] = useState(null);

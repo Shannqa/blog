@@ -1,4 +1,3 @@
-import session from "express-session";
 import passport from "passport";
 import "dotenv/config";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
@@ -70,13 +69,3 @@ const JwtAuth = new JwtStrategy(options, (payload, done) => {
 const authJWT = passport.authenticate("jwt", { session: false });
 
 export { LocalAuth, JwtAuth, issueJWT, authJWT };
-
-/*
-
-curl http://localhost:3000/auth/check
-
-curl http://localhost:3000/auth/login -X POST -H "Content-Type: application/json" -d '{"username": "admin", "password": ""}'
-
-curl http://localhost:3000/api/ -X POST -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiYXNpYSJ9LCJpYXQiOjE3MTQ1MDE3Nzd9.T0vxq5qjDsjX70Ta1zfQdCNBhTXC0tUoOX2e29oOcoo" -d '{"title": "Second article", "content": "This is the content"}'
-
-*/

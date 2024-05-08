@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { BlogContext } from "./Root.jsx";
+import { AppContext, BlogContext } from "./Root.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../styles/Header.module.css";
 
 function DeletePost() {
-  const { user, setUser, token, setToken } = useContext(BlogContext);
+  const { user, setUser, token, setToken } = useContext(AppContext);
   const [resMessage, setResMessage] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();

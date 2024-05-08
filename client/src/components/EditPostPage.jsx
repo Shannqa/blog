@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
-import { BlogContext } from "./Root.jsx";
+import { AppContext } from "./Root.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../styles/PostEditor.module.css";
 import Tooltip from "./Tooltip.jsx";
 
 function EditPostPage() {
   const { user, setUser, token, setToken, error, setError } =
-    useContext(BlogContext);
+    useContext(AppContext);
   const [post, setPost] = useState(null);
   const [resMessage, setResMessage] = useState(null);
 

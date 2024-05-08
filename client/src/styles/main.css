@@ -12,19 +12,18 @@ body {
 }
 
 .root {
-  display: flex;
-  flex-direction: column;
   background-color: #fff;
   min-height: 90vh;
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 40px;
+  justify-content: space-between;
+  padding: 24px 48px;
+  position: relative;
 }
 
 .main {
-  padding-left: 20px;
-
   margin-top: 0;
 }
 
@@ -62,12 +61,14 @@ button,
 }
 button:hover,
 .button:hover {
-  color: rgb(8, 88, 8);
+  color: #fff;
+  background-color: #682eab;
 }
 
 button:active,
 .button:active {
-  color: rgb(1, 131, 109);
+  color: #fff;
+  background-color: #b05108;
 }
 
 h1 {

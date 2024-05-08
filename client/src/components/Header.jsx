@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Account from "./Account.jsx";
-import { BlogContext } from "./Root.jsx";
+import { AppContext } from "./Root.jsx";
 import Logout from "./Logout.jsx";
 import AddPost from "./AddPost.jsx";
 import styles from "../styles/Header.module.css";
 
 function Header() {
-  const { user, setUser } = useContext(BlogContext);
+  const { user, setUser } = useContext(AppContext);
 
   return (
     <div className={styles.header}>
